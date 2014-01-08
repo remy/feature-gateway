@@ -25,22 +25,22 @@ describe('features flags', function () {
   }
 
   it('should give not allow unknown features', function () {
-    assert(features.test('unknown') === false, 'unknown feature are blocked');
+    assert(features('unknown') === false, 'unknown feature are blocked');
   });
 
   it('should allow beta users', function () {
     var req = getBetaUser();
 
-    assert(features.test('beta', req) === true, 'beta users allowed');
+    assert(features('beta', req) === true, 'beta users allowed');
 
     req.session.user.beta = false;
-    assert(features.test('beta', req) === false, 'non beta users blocked');
+    assert(features('beta', req) === false, 'non beta users blocked');
 
     delete req.session.user.beta;
-    assert(features.test('beta', req) === false, 'non beta (flagless) users blocked');
+    assert(features('beta', req) === false, 'non beta (flagless) users blocked');
 
     delete req.session;
-    assert(features.test('beta', req) === false, 'non logged in users blocked');
+    assert(features('beta', req) === false, 'non logged in users blocked');
   });
 });
 
