@@ -1,0 +1,24 @@
+{
+  "name": "feature-gateway",
+  "version": "0.0.1",
+  "description": "Simple, memory and JS based feature testing with express support",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/_mocha --ui bdd test/**/*.test.js"
+  },
+  "keywords": [
+    "feature",
+    "flags"
+  ],
+  "author": "Remy Sharp",
+  "license": "MIT / http://rem.mit-license.org",
+  "devDependencies": {
+    "mocha": "~1.16.2",
+    "supertest": "~0.8.3",
+    "express": "~3.4.7",
+    "undefsafe": "0.0.1"
+  }
+}
