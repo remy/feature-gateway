@@ -1,6 +1,6 @@
 {
   "name": "feature-gateway",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple, memory and JS based feature testing with express support",
   "main": "lib/index.js",
   "directories": {
