@@ -68,6 +68,22 @@ app.get('/home', function (req, res) {
 });
 ```
 
+## Logging
+
+You can attach a logger, and you'll get the data about the feature test:
+
+```js
+
+var features = new Features(flags);
+
+features.log = function (flag, response, args) {
+  console.log('Flag: ' + flag);
+  console.log('Response: ' + response);
+  console.log('Arguments to flag test: ' + JSON.stringify(args));
+}
+```
+
 ## License
 
 MIT / [http://rem.mit-license.org](http://rem.mit-license.org)
+
