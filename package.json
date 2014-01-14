@@ -15,6 +15,10 @@
   ],
   "author": "Remy Sharp",
   "license": "MIT / http://rem.mit-license.org",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/remy/feature-gateway.git"
+  },
   "devDependencies": {
     "mocha": "~1.16.2",
     "supertest": "~0.8.3",
