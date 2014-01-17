@@ -83,6 +83,32 @@ features.log = function (flag, response, args) {
 }
 ```
 
+## Examples
+
+This is an example of how we're using the features in our handlebar templates (as well as routes and general code):
+
+```js
+'use strict';
+var hbs = require('hbs'),
+    features = require('./features');
+
+/**
+ * usage:
+ *
+ * {{feature user "alpha"}}<!-- here be the new stuff -->{{/feature}}
+ */
+
+hbs.registerHelper('feature', function(user, flag, options) {
+  // note that for this project, the convention is that the feature receives a request object
+  // that will contain a session property with the user, so I'm fleshing it out here.
+  if (features(flag, { session: { user: user } })) {
+    return options.fn(this);
+  }
+});
+
+module.exports = hbs;
+```
+
 ## License
 
 MIT / [http://rem.mit-license.org](http://rem.mit-license.org)
