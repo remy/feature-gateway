@@ -109,6 +109,36 @@ hbs.registerHelper('feature', function(user, flag, options) {
 module.exports = hbs;
 ```
 
+The following is an example of how to use the feature gateway to give 50% of users (based on IP address) a feature:
+
+```js
+function ipAsNum(req) {
+  // takes the last part of an IP (n.n.n.last-part) and returns as number
+  return (req.headers['x-real-ip'] || req.ip || '0.0').split('.').slice(-1) * 1;
+}
+
+function percentage(n, req) {
+  var mod = parseInt(100 / n, 10); // ensures whole number
+  if (mod === 0) {
+    mod = 1;
+  }
+  var ip = ipAsNum(req);
+
+  return ip % mod === 0;
+}
+
+var features = new Features({
+  fooFeature: function (request) {
+    // request is the express request object - passed in via our routing OR handlebars feature flags
+    
+    // note that now 50% can easily be tweaked to 10% or even 100%
+    return percentage(50, request);
+  }
+});
+```
+
+Now my code can use `fooFeature` test and 50% of visitors will get the feature to allow me to perform real A/B testing.
+
 ## License
 
 MIT / [http://rem.mit-license.org](http://rem.mit-license.org)
