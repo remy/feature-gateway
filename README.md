@@ -85,6 +85,8 @@ features.log = function (flag, response, args) {
 
 ## Examples
 
+### Templating
+
 This is an example of how we're using the features in our handlebar templates (as well as routes and general code):
 
 ```js
@@ -108,6 +110,8 @@ hbs.registerHelper('feature', function(user, flag, options) {
 
 module.exports = hbs;
 ```
+
+### AB testing
 
 The following is an example of how to use the feature gateway to give 50% of users (based on IP address) a feature:
 
