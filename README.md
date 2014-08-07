@@ -1,3 +1,5 @@
+[![Test status](https://api.travis-ci.org/jsbin/feature-gateway.svg?branch=master)](https://travis-ci.org/jsbin/feature-gateway)
+
 # Feature Gateway
 
 Simple, memory and JS based feature testing with [express](http://expressjs.com) support.
