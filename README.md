@@ -83,6 +83,16 @@ features.log = function (flag, response, args) {
 }
 ```
 
+## Inverting
+
+If you want the inverse of the flag, prefix the feature with a `!` to invert the result:
+
+```js
+if (features('!beta', user)) {
+  // this is for users who are NOT in the beta flag
+}
+```
+
 ## Examples
 
 ### Templating
@@ -129,7 +139,7 @@ function percentage(n, req) {
 var features = new Features({
   fooFeature: function (request) {
     // request is the express request object - passed in via our routing OR handlebars feature flags
-    
+
     // note that now 50% can easily be tweaked to 10% or even 100%
     return percentage(50, request);
   }
