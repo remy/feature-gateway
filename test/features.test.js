@@ -31,6 +31,8 @@ describe('features flags', function () {
   it('should allow beta users', function () {
     var req = getBetaUser();
 
+    assert(features('!beta', req) === false, 'beta are not allowed');
+
     assert(features('beta', req) === true, 'beta users allowed');
 
     req.session.user.beta = false;
@@ -41,6 +43,7 @@ describe('features flags', function () {
 
     delete req.session;
     assert(features('beta', req) === false, 'non logged in users blocked');
+
   });
 });
 
