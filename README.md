@@ -1,4 +1,5 @@
-[![Test status](https://api.travis-ci.org/jsbin/feature-gateway.svg?branch=master)](https://travis-ci.org/jsbin/feature-gateway)
+[![Build Status](https://travis-ci.org/remy/feature-gateway.svg?branch=master)](https://travis-ci.org/remy/feature-gateway)
+[![Known Vulnerabilities](https://snyk.io/test/github/remy/feature-gateway/badge.svg)](https://snyk.io/test/github/remy/feature-gateway)
 
 # Feature Gateway
 
@@ -59,6 +60,11 @@ module.exports = {
 ### routes.js
 
 ```js
+'use strict';
+
+var flags = require('./flags');
+var features = require('./lib')(flags);
+
 app.get('/home', features.route('beta'), function (req, res) {
   // send the redesigned beta homepage
   res.render('home-v2');
@@ -109,15 +115,16 @@ var hbs = require('hbs'),
 /**
  * usage:
  *
- * {{feature user "alpha"}}<!-- here be the new stuff -->{{/feature}}
+ * {{#feature user 'alpha'}}
+ *   <!-- here be the new stuff -->
+ * {{else}}
+ *   <!--- unentitled users get this stuff -->
+ * {{/feature}}
  */
-
-hbs.registerHelper('feature', function(user, flag, options) {
+hbs.registerHelper('feature', function (user, flag, opts) {
   // note that for this project, the convention is that the feature receives a request object
   // that will contain a session property with the user, so I'm fleshing it out here.
-  if (features(flag, { session: { user: user } })) {
-    return options.fn(this);
-  }
+  return (features(flag, { session: { user: user }})) ? opts.fn(this) : opts.inverse(this);
 });
 
 module.exports = hbs;
