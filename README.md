@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/remy/feature-gateway.svg?branch=master)](https://travis-ci.org/remy/feature-gateway)
 [![Known Vulnerabilities](https://snyk.io/test/github/remy/feature-gateway/badge.svg)](https://snyk.io/test/github/remy/feature-gateway)
 
 # Feature Gateway
